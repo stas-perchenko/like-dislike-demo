@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 
 import com.sperchenko.likedislikedemo.R;
 
@@ -19,7 +20,7 @@ public abstract class ProgressAsyncTaskCompat<T, G, F> extends AsyncTask<T, G, F
 
     private ProgressDialog progress;
 
-    ProgressAsyncTaskCompat(Context context, boolean showProgress, boolean isProgressCancellable) {
+    public ProgressAsyncTaskCompat(Context context, boolean showProgress, boolean isProgressCancellable) {
         mContext = context;
         this.showProgress = showProgress;
         this.isProgressCancellable = isProgressCancellable;
@@ -43,6 +44,7 @@ public abstract class ProgressAsyncTaskCompat<T, G, F> extends AsyncTask<T, G, F
             progress.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
+                    Log.d("test", "progress.onCancel()");
                     if (!ProgressAsyncTaskCompat.this.isCancelled()) {
                         ProgressAsyncTaskCompat.this.cancel(true);
                     }
@@ -62,6 +64,7 @@ public abstract class ProgressAsyncTaskCompat<T, G, F> extends AsyncTask<T, G, F
 
     @Override
     protected void onCancelled(F f) {
+        Log.d("test", "task - onCancelled()");
         if (progress != null) {
             progress.dismiss();
             progress = null;
