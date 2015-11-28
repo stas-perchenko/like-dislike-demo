@@ -13,7 +13,7 @@ import com.sperchenko.likedislikedemo.storage.SQLiteDataHelper;
 /**
  * Created by Stas on 28.11.2015.
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     private volatile SQLiteDataHelper helper;
     private volatile boolean created = false;
     private volatile boolean destroyed = false;
