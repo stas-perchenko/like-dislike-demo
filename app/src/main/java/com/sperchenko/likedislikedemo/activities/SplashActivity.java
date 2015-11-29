@@ -23,6 +23,8 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         sPref = getPreferences(MODE_PRIVATE);
 
+        getSupportActionBar().hide();
+
         long nUsers = getHelper().getPersonDAO().countOf();
         if (nUsers == 0) {
             new ProgressAsyncTaskCompat<Void, Void, Void>(this, true, false) {

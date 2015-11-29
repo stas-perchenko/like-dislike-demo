@@ -36,6 +36,13 @@ public class CrossRating {
     @DatabaseField(columnName = COMMITTED_COLUMNS_COLUMN)
     private boolean committed;
 
+    /**
+     * Default no-arg constructor for the ORMLite library
+     */
+    public CrossRating() {
+
+    }
+
     public CrossRating(int thisUserId, int otherUserId, int score) {
         setThisUserId(thisUserId);
         setOtherUser(otherUserId);

@@ -6,7 +6,11 @@ package com.sperchenko.likedislikedemo.storage;
 public class DBUtils {
 
     public static void initDatabase(SQLiteDataHelper helper) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
 
+        }
     }
 
 }
