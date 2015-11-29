@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.sperchenko.likedislikedemo.R;
 import com.sperchenko.likedislikedemo.storage.DBUtils;
 import com.sperchenko.likedislikedemo.storage.SQLiteDataHelper;
 import com.sperchenko.likedislikedemo.tasks.ProgressAsyncTaskCompat;
@@ -19,7 +20,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_splash);
         sPref = getPreferences(MODE_PRIVATE);
 
         long nUsers = getHelper().getPersonDAO().countOf();
