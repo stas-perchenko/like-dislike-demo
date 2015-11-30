@@ -43,7 +43,7 @@ public class SelectUserLoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         vEdtPassword = (EditText) findViewById(R.id.edt_user);
-        vEdtPassword = (EditText) findViewById(R.id.edt_login);
+        vEdtPassword = (EditText) findViewById(R.id.edt_password);
         vBtnUsers = (Button) findViewById(R.id.btn_users);
         vBtnLogin = (Button) findViewById(R.id.btn_login);
 
@@ -185,7 +185,7 @@ public class SelectUserLoginActivity extends BaseActivity {
             Person p = options.get(0);
 
             //--- Check password ---
-            if (!TextUtils.isEmpty(p.getPassword()) && !p.getPassword().equals(vEdtPassword.getText().toString())) {
+            if (!TextUtils.isEmpty(p.getPassword()) && !p.getPassword().equals(upass)) {
                 showLoginFailedDialog(R.string.login_worng_password);
                 return;
             }
