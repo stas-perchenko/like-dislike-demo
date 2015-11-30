@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LikeDislikeDemo</string>
+
+    <string name="login_user_prompt_dialog_title">Users for login.</string>
+    <string name="login_no_username">No username entered.</string>
+    <string name="login_worng_password">Wrong password</string>
+    <string name="login_no_such_user">No such user or user is not allowed for login</string>
+    <string name="login_failed_dialog_title">Login failed</string>
 </resources>

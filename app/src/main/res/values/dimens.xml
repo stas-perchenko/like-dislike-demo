@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Login Activity -->
+    <dimen name="login_side_paddings">22dp</dimen>
+    <dimen name="login_btn_sers_left_margin">8dp</dimen>
+</resources>

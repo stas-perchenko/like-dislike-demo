@@ -11,6 +11,8 @@ import com.sperchenko.likedislikedemo.model.CrossRating;
 import com.sperchenko.likedislikedemo.model.Person;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Stas on 28.11.2015.
@@ -71,6 +73,11 @@ public class SQLiteDataHelper extends OrmLiteSqliteOpenHelper {
 
 
     public class PreparedQueries {
-        //TODO
+
+        public List<Person> getPersonsByNameIfHaveRatings(String userName) {
+            //TODO Implement this
+            // Ratings LEFT JOIN Person
+            return new ArrayList<>();
+        }
     }
 }
