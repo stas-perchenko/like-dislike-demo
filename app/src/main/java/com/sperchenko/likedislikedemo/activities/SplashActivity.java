@@ -33,6 +33,9 @@ public class SplashActivity extends BaseActivity {
                     SQLiteDataHelper helper = OpenHelperManager.getHelper(SplashActivity.this, SQLiteDataHelper.class);
                     try {
                         DBUtils.initDatabase(helper);
+
+                        //TODO Initialize icons: copy them from assets to cache directory
+
                     } finally {
                         OpenHelperManager.releaseHelper();
                     }
