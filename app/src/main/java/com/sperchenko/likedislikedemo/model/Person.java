@@ -1,5 +1,8 @@
 package com.sperchenko.likedislikedemo.model;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -27,6 +30,19 @@ public class Person extends BaseDBModel {
     @DatabaseField(columnName = PHOTO_ID_COLUMN)
     private int photoId;
 
+    /**
+     * No-arguments constructor for ORMLite
+     */
+    public Person() {
+    }
+
+    public Person(int id, @NonNull String userName, @Nullable String password, @NonNull String displayedName, int photoId) {
+        setId(id);
+        this.userName = userName;
+        this.password = password;
+        this.displayedName = displayedName;
+        this.photoId = photoId;
+    }
 
     public String getUserName() {
         return userName;

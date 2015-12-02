@@ -1,6 +1,7 @@
 package com.sperchenko.likedislikedemo.storage;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -73,6 +74,8 @@ public class SQLiteDataHelper extends OrmLiteSqliteOpenHelper {
 
 
     public class PreparedQueries {
+
+        private String TABLE_PEOPLE_RATINGS = String.format("%1$s as P LEFT JOIN %2%s as CR on P.%3$s = CR.%4$s", Person.TABLE_NAME, CrossRating.TABLE_NAME, Person.ID_COLUMN, CrossRating.THIS_USER_COLUMN);
 
         public List<Person> getPersonsByNameIfHaveRatings(String userName) {
             //TODO Implement this
