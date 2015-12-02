@@ -5,4 +5,6 @@
     <!-- Login Activity -->
     <dimen name="login_side_paddings">22dp</dimen>
     <dimen name="login_btn_sers_left_margin">8dp</dimen>
+    <dimen name="user_list_dialog_item_height">64dp</dimen>
+    <dimen name="user_list_dialog_item_icon">56dp</dimen>
 </resources>
