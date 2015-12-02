@@ -78,15 +78,35 @@ public class SQLiteDataHelper extends OrmLiteSqliteOpenHelper {
         private String TABLE_PEOPLE_RATINGS = String.format("%1$s as P LEFT JOIN %2%s as CR on P.%3$s = CR.%4$s", Person.TABLE_NAME, CrossRating.TABLE_NAME, Person.ID_COLUMN, CrossRating.THIS_USER_COLUMN);
 
         public List<Person> getPersonsByNameIfHaveRatings(String userName) {
-            //TODO Implement this
-            // Ratings LEFT JOIN Person
-            return new ArrayList<>();
+            String where = String.format("(CR.%1$s <> NULL) AND (P.%2$s = '53$s')", CrossRating.SCORE_COLUMN, Person.USER_NAME_COLUMN, userName);
+            return getPeopleFromJoinedTable(where);
         }
 
         public List<Person> getAllPersonsWithRatings() {
-            //TODO Implement this
-            // Ratings LEFT JOIN Person
-            return new ArrayList<>();
+            String where = String.format("CR.%s <> NULL", CrossRating.SCORE_COLUMN);
+            return getPeopleFromJoinedTable(where);
+        }
+
+        private List<Person> getPeopleFromJoinedTable(String where) {
+            String[] columns = new String[]{Person.ID_COLUMN, Person.USER_NAME_COLUMN, Person.PASSWORD_COLUMN, Person.DISPLAYED_NAME_COLUMN, Person.PHOTO_ID_COLUMN};
+
+            Cursor c = getReadableDatabase().query(true, TABLE_PEOPLE_RATINGS, columns, where, null, null, null, "P."+Person.DISPLAYED_NAME_COLUMN, null);
+            try {
+                List<Person> people = new ArrayList<>();
+                if (c.moveToFirst()) {
+                    do {
+                        Person p = new Person(c.getInt(c.getColumnIndex(Person.ID_COLUMN)),
+                                c.getString(c.getColumnIndex(Person.USER_NAME_COLUMN)),
+                                c.getString(c.getColumnIndex(Person.PASSWORD_COLUMN)),
+                                c.getString(c.getColumnIndex(Person.DISPLAYED_NAME_COLUMN)),
+                                c.getInt(c.getColumnIndex(Person.PHOTO_ID_COLUMN)));
+                        people.add(p);
+                    } while (c.moveToNext());
+                }
+                return people;
+            } finally {
+                if (c != null) c.close();
+            }
         }
     }
 }
