@@ -15,11 +15,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.sperchenko.likedislikedemo.R;
 import com.sperchenko.likedislikedemo.adapter.PromptUsersLoginAdapter;
 import com.sperchenko.likedislikedemo.model.Person;
+import com.sperchenko.likedislikedemo.storage.SQLiteDataHelper;
 import com.sperchenko.likedislikedemo.tasks.ProgressAsyncTaskCompat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +45,7 @@ public class SelectUserLoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        vEdtPassword = (EditText) findViewById(R.id.edt_user);
+        vEdtUsername = (EditText) findViewById(R.id.edt_user);
         vEdtPassword = (EditText) findViewById(R.id.edt_password);
         vBtnUsers = (Button) findViewById(R.id.btn_users);
         vBtnLogin = (Button) findViewById(R.id.btn_login);
@@ -91,8 +94,16 @@ public class SelectUserLoginActivity extends BaseActivity {
         mSelectUsersTask = new ProgressAsyncTaskCompat<Void, Void, List<Person>>(this, false, false){
             @Override
             protected List<Person> doInBackground(Void... params) {
-                //TODO Select users
-                return null;
+                SQLiteDataHelper dbHelper = OpenHelperManager.getHelper(SelectUserLoginActivity.this, SQLiteDataHelper.class);
+                try {
+                    return dbHelper.getPreparedQueries().getAllPersonsWithRatings();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                    return new ArrayList<>();
+                } finally {
+                    if (dbHelper != null) OpenHelperManager.releaseHelper();
+                }
+
             }
 
             @Override
@@ -150,8 +161,6 @@ public class SelectUserLoginActivity extends BaseActivity {
     }
 
     private void startSelectUserDialog() {
-        //TODO Implement this
-
         new AlertDialog.Builder(this).setAdapter(new PromptUsersLoginAdapter(this, mAllowedPeople), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -165,8 +174,6 @@ public class SelectUserLoginActivity extends BaseActivity {
     }
 
     private void tryLogin() {
-        //TODO Implement this
-
         if (mSelectedPerson != null) {
             if (!TextUtils.isEmpty(mSelectedPerson.getPassword()) && !mSelectedPerson.getPassword().equals(vEdtPassword.getText().toString())) {
                 showLoginFailedDialog(R.string.login_worng_password);

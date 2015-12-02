@@ -13,6 +13,8 @@ import java.util.List;
  */
 public class PromptUsersLoginAdapter extends ArrayAdapter<Person> {
 
+    //TODO Implement this adapter
+
     public PromptUsersLoginAdapter(Context context, List<Person> data) {
         super(context, R.layout.user_list_item, 0, data);
     }

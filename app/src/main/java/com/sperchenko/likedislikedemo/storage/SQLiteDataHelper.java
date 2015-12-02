@@ -79,5 +79,11 @@ public class SQLiteDataHelper extends OrmLiteSqliteOpenHelper {
             // Ratings LEFT JOIN Person
             return new ArrayList<>();
         }
+
+        public List<Person> getAllPersonsWithRatings() {
+            //TODO Implement this
+            // Ratings LEFT JOIN Person
+            return new ArrayList<>();
+        }
     }
 }
